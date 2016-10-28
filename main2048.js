@@ -21,6 +21,9 @@ document.addEventListener("touchstart", function(event) {
 
 });
 
+document.addEventListener("touchmove", function(event) {
+    event.preventDefault();
+});
 
 document.addEventListener("touchend", function(event) {
     endX = event.changedTouches[0].pageX;
@@ -36,14 +39,14 @@ document.addEventListener("touchend", function(event) {
         // x 轴
         if ( deltaX > 0 ) {
             // move right
-            event.preventDefault();
+            //event.preventDefault();
             if( moveRight() ) {
                 setTimeout("generateOneNumber()",210);
                 setTimeout("isGameOver()",300);
             }
         } else {
             // move left
-            event.preventDefault();
+            //event.preventDefault();
             if( moveLeft() ) {
                 setTimeout("generateOneNumber()",210);
                 setTimeout("isGameOver()",300);
@@ -54,14 +57,14 @@ document.addEventListener("touchend", function(event) {
         // y 轴
         if ( deltaY > 0 ) {
             // move down
-            event.preventDefault();
+            //event.preventDefault();
             if( moveDown() ) {
                 setTimeout("generateOneNumber()",210);
                 setTimeout("isGameOver()",300);
             }
         } else {
             // move up
-            event.preventDefault();
+            //event.preventDefault();
             if( moveUp() ) {
                 setTimeout("generateOneNumber()",210);
                 setTimeout("isGameOver()",300);
