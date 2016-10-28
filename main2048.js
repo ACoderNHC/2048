@@ -10,6 +10,8 @@ var startY = 0;
 var endX = 0;
 var endY = 0;
 
+var touchCount = 0;
+
 $(document).ready(function() {
     prepareForMobile();
     newgame();
@@ -19,6 +21,8 @@ document.addEventListener("touchstart", function(event) {
     startX = event.touches[0].pageX;
     startY = event.touches[0].pageY;
 
+    touchCount = event.touches.length;
+
 });
 
 document.addEventListener("touchmove", function(event) {
@@ -27,7 +31,7 @@ document.addEventListener("touchmove", function(event) {
 
 document.addEventListener("touchend", function(event) {
     // 屏蔽多点触控
-    if (event.changedTouches.length != 1)
+    if ( touchCount != 1 )
         return;
 
     endX = event.changedTouches[0].pageX;
