@@ -93,6 +93,14 @@ function prepareForMobile() {
         cellWidth = 100;
         cellMargain = 20;
     }
+    else {
+        $("#newgamebutton").hover(function(){
+            $("#newgamebutton").css("background-color","#8f7a66");
+        },function(){
+            $("#newgamebutton").css("background-color","#8f7a66");
+        });
+    }
+
 
     $("#grid-container").css("width",gridWidth - 2 * cellMargain);
     $("#grid-container").css("height",gridWidth - 2 * cellMargain);
