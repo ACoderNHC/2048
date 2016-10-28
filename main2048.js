@@ -109,7 +109,7 @@ function prepareForMobile() {
 
     $(".grid-cell").css("width",cellWidth);
     $(".grid-cell").css("height",cellWidth);
-    $(".grid-cell").css("border-radius",0.02 * cellWidth );
+    $(".grid-cell").css("border-radius",0.02 * gridWidth );
 }
 
 function newgame(){
@@ -170,6 +170,8 @@ function updateForView() {
 
     $(".number-cell").css("line-height", cellWidth + "px" );
     $(".number-cell").css("font-size", 0.6 *  cellWidth + "px" );
+    $(".number-cell").css("border-radius",0.02 * gridWidth );
+
 }
 
 
