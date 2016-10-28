@@ -27,7 +27,7 @@ document.addEventListener("touchmove", function(event) {
 
 document.addEventListener("touchend", function(event) {
     // 屏蔽多点触控
-    if (event.touches.length > 1)
+    if (event.changedTouches.length > 1)
         return;
 
     endX = event.changedTouches[0].pageX;
