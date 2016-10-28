@@ -123,7 +123,7 @@ function init() {
     }
 
     score = 0;
-
+    updateScore();
     updateForView();
 }
 
