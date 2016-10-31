@@ -4,6 +4,7 @@
 var board = new Array();
 var score = 0;
 var hasConflicted = new Array();
+var nullCell = new Array();
 
 var startX = 0;
 var startY = 0;
@@ -144,12 +145,23 @@ function init() {
 }
 
 function updateForView() {
+
+    // 清空空cell数组
+    nullCell.splice(0,nullCell.length);
+
     $(".number-cell").remove();
     for(var i=0; i<4; i++)
         for(var  j=0; j<4; j++) {
             $("#grid-container").append('<div class="number-cell" id="number-cell-'+i+'-'+j+'"></div>');
             var  theNumberCell = $("#number-cell-"+i+"-"+j);
             if(board[i][j] == 0) {
+
+                // 增加空cell对象
+                var nullObject = new Array();
+                nullObject["row"] = i;
+                nullObject["col"] = j;
+                nullCell.push(nullObject);
+
                 theNumberCell.css('width','0px');
                 theNumberCell.css('height','0px');
                 theNumberCell.css('top',getPosTop(i,j) + cellWidth / 2 );
@@ -180,30 +192,36 @@ function  generateOneNumber() {
         return false;
     }
 
-    // 随机一个位置
-    var randomX = parseInt(Math.floor(Math.random() * 4));
-    var randomY = parseInt(Math.floor(Math.random() * 4));
-
-    var times = 0;
-    while(times < 50) {
-        if (board[randomX][randomY] == 0) {
-            break;
-        }
-        randomX = parseInt(Math.floor(Math.random() * 4));
-        randomY = parseInt(Math.floor(Math.random() * 4));
-
-        times++;
-    }
-
-    if (times == 50) {
-        // 人工赋值
-        for ( var i = 0; i < 4; i++)
-            for ( var j = 0; j < 4; j++ )
-                if ( board[i][j] == 0 ) {
-                    randomX = i;
-                    randomY = j;
-                }
-    }
+    // 优化随机位置算法
+    var randomObjectIndex = parseInt(Math.floor(Math.random() * nullCell.length));
+    var randomObject = nullCell[randomObjectIndex];
+    var randomX = randomObject["row"];
+    var randomY = randomObject["col"];
+    
+    //// 随机一个位置
+    //var randomX = parseInt(Math.floor(Math.random() * 4));
+    //var randomY = parseInt(Math.floor(Math.random() * 4));
+    //
+    //var times = 0;
+    //while(times < 50) {
+    //    if (board[randomX][randomY] == 0) {
+    //        break;
+    //    }
+    //    randomX = parseInt(Math.floor(Math.random() * 4));
+    //    randomY = parseInt(Math.floor(Math.random() * 4));
+    //
+    //    times++;
+    //}
+    //
+    //if (times == 50) {
+    //    // 人工赋值
+    //    for ( var i = 0; i < 4; i++)
+    //        for ( var j = 0; j < 4; j++ )
+    //            if ( board[i][j] == 0 ) {
+    //                randomX = i;
+    //                randomY = j;
+    //            }
+    //}
 
     // 随机一个数字
     var randomNum = Math.random() < 0.5 ? 2 : 4;
